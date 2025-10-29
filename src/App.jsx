@@ -4,17 +4,19 @@ import { Map } from "./Map";
 
 import "./App.css";
 import "leaflet/dist/leaflet.css";
+import { useState } from "react";
 
-function App() {
+export function App() {
+  const [info, setInfo] = useState({});
+  console.log(info);
+
   return (
     <div className="app">
       <Header />
-      <Sidebar />
+      <Sidebar info={info} />
       <div className="mainArea">
-        <Map />
+        <Map setInfo={setInfo} />
       </div>
     </div>
   );
 }
-
-export default App;

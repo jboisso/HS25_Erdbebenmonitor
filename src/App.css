@@ -24,6 +24,7 @@ body {
 
 .aside {
   border-right: 1px solid grey;
+  padding-left: 10px;
 }
 .main {
   background: white;
