@@ -7,7 +7,7 @@ body {
 .app {
   display: grid;
   min-height: 100vh;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 25vw 1fr;
   grid-template-rows: auto 1fr;
 }
 
@@ -24,8 +24,26 @@ body {
 
 .aside {
   border-right: 1px solid grey;
-  padding-left: 10px;
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 .main {
   background: white;
+}
+.Button {
+  display: block; /* ensures predictable width behavior */
+  margin: 8px auto; /* centers horizontally inside parent */
+  padding: 6px 12px;
+}
+.ButtonGroup {
+  padding: 6px 12px;
+}
+
+.ButtonGroupBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }

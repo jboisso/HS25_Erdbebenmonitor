@@ -7,13 +7,15 @@ import {
   GeoJSON,
 } from "react-leaflet";
 
-import data from "./assets/4.5_week.geojson.json";
+//import data from "./assets/4.5_week.geojson.json";
 import borders from "./assets/plate_boundaries.geojson.json";
+import Button from "@mui/material/Button";
 
-export const Map = ({ setInfo }) => {
-  const earthquakes = data.features; // Wir benötigen nur den Feature-Array aus den Daten
+export const Map = ({ setInfo, svalue, eqdata }) => {
+  //const earthquakes = data.features; // Wir benötigen nur den Feature-Array aus den Daten
+  const earthquakes = eqdata.features || [];
 
-  return (
+  return earthquakes && earthquakes.length > 0 ? (
     <MapContainer
       center={[5, 0]}
       zoom={2}
@@ -29,7 +31,7 @@ export const Map = ({ setInfo }) => {
         <CircleMarker
           key={i}
           center={[d.geometry.coordinates[1], d.geometry.coordinates[0]]}
-          radius={d.properties.mag ** 1.5}
+          radius={d.properties.mag ** svalue}
           pathOptions={{
             color: "#ff333d",
             fillColor: "#ff333d",
@@ -41,17 +43,28 @@ export const Map = ({ setInfo }) => {
               <div style={{ textAlign: "center" }}>
                 {d.properties.title} <br />
               </div>
-              <button
+              <Button
+                className="Button"
+                variant="outlined"
+                sx={{
+                  borderColor: "red",
+                  color: "red",
+                  display: "block",
+                  mx: "auto",
+                }}
+                size="small"
                 onClick={() => {
                   setInfo(d);
                 }}
               >
                 Info
-              </button>
+              </Button>
             </div>
           </Popup>
         </CircleMarker>
       ))}
     </MapContainer>
+  ) : (
+    <div>Error, no Earthquakes found</div>
   );
 };
